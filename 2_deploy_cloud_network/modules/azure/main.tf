@@ -20,7 +20,7 @@ resource "azurerm_virtual_network" "azurerm_virtual_network" {
 	name = "vnet_tf_${var.creation_time_epoch}"
 	location = azurerm_resource_group.azurerm_resource_group.location
 	resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-	address_space = ["${var.master_subnet}/${var.master_subnet_mask}"]
+	address_space = ["${var.main_subnet}/${var.main_subnet_mask}"]
 	dns_servers = ["10.0.0.4", "10.0.0.5"]
 }
 

@@ -38,8 +38,8 @@ module "azure" {
 	peering_address = cidrhost("${module.ipam.apipa_peering_subnet}/30", 2)
 	subnet = module.ipam.azure_subnet
 	subnet_mask = module.ipam.azure_subnet_mask
-	master_subnet = module.ipam.azure_master_subnet
-	master_subnet_mask = module.ipam.azure_master_subnet_mask
+	main_subnet = module.ipam.azure_main_subnet
+	main_subnet_mask = module.ipam.azure_main_subnet_mask
 	aws_vgw_ip = module.aws.azure_vpn_outside_ip
 	aws_tunnel1_psk = module.aws.azure_vpn_tunnel1_psk
 	vyos_peering_address = cidrhost("${module.ipam.apipa_peering_subnet_vyos_azure}/30", 1)
@@ -61,8 +61,8 @@ module "aws" {
 	#azure_peering_address = cidrhost("${module.ipam.apipa_peering_subnet}/30", 2)
 	subnet = module.ipam.aws_subnet
 	subnet_mask = module.ipam.aws_subnet_mask
-	#master_subnet = module.ipam.aws_master_subnet
-	#master_subnet_mask = module.ipam.aws_master_subnet_mask
+	#main_subnet = module.ipam.aws_main_subnet
+	#main_subnet_mask = module.ipam.aws_main_subnet_mask
 	vyos_vgw_ip = var.VyosExternalIp
 	as_number = var.AwsAs
 	azure_as_number = var.AzureAs

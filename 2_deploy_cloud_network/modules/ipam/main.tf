@@ -17,27 +17,27 @@ provider "phpipam" {
 }
 
 //Azure
-data "phpipam_section" "azure_master_section" {
+data "phpipam_section" "azure_main_section" {
 	name = "TF_CLOUD_AS${var.azure_as_number}_AZURE"
 }
 
-data "phpipam_subnet" "azure_master_subnet" {
-	section_id = data.phpipam_section.azure_master_section.section_id
+data "phpipam_subnet" "azure_main_subnet" {
+	section_id = data.phpipam_section.azure_main_section.section_id
 	description_match = "AS${var.azure_as_number}: Azure"
 }
 
 resource "phpipam_first_free_subnet" "free_subnet_azure" {
-	parent_subnet_id = data.phpipam_subnet.azure_master_subnet.subnet_id
+	parent_subnet_id = data.phpipam_subnet.azure_main_subnet.subnet_id
 	subnet_mask = 24
 	description = "VNET_XY_UUID"
 }
 //Azure - AWS Transfer
-data "phpipam_section" "apipa_master_section" {
+data "phpipam_section" "apipa_main_section" {
 	name = "TF_CLOUD_BGP_TRANSFER"
 }
 
 data "phpipam_subnet" "apipa_transfer_subnet" {
-	section_id = data.phpipam_section.apipa_master_section.section_id
+	section_id = data.phpipam_section.apipa_main_section.section_id
 	description_match = "Cloud_Transfer_BGP_1"
 }
 
@@ -54,17 +54,17 @@ resource "phpipam_first_free_subnet" "free_subnet_apipa_vyos" {
 }
 
 //AWS
-data "phpipam_section" "aws_master_section" {
+data "phpipam_section" "aws_main_section" {
 	name = "TF_CLOUD_AS${var.aws_as_number}_AWS"
 }
 
-data "phpipam_subnet" "aws_master_subnet" {
-	section_id = data.phpipam_section.aws_master_section.section_id
+data "phpipam_subnet" "aws_main_subnet" {
+	section_id = data.phpipam_section.aws_main_section.section_id
 	description_match = "AS${var.aws_as_number}: AWS"
 }
 
 resource "phpipam_first_free_subnet" "free_subnet_aws" {
-	parent_subnet_id = data.phpipam_subnet.aws_master_subnet.subnet_id
+	parent_subnet_id = data.phpipam_subnet.aws_main_subnet.subnet_id
 	subnet_mask = 24
 	description = "VPC_XY_UUID"
 }
@@ -80,12 +80,12 @@ output "apipa_peering_subnet_vyos_azure" {
 
 #ToDo: Register IP addresses in IPAM
 
-output "azure_master_subnet" {
-	value = data.phpipam_subnet.azure_master_subnet.subnet_address
+output "azure_main_subnet" {
+	value = data.phpipam_subnet.azure_main_subnet.subnet_address
 }
 
-output "azure_master_subnet_mask" {
-	value = data.phpipam_subnet.azure_master_subnet.subnet_mask
+output "azure_main_subnet_mask" {
+	value = data.phpipam_subnet.azure_main_subnet.subnet_mask
 }
 
 output "azure_subnet" {
@@ -96,12 +96,12 @@ output "azure_subnet_mask" {
 	value = phpipam_first_free_subnet.free_subnet_azure.subnet_mask
 }
 
-output "aws_master_subnet" {
-	value = data.phpipam_subnet.aws_master_subnet.subnet_address
+output "aws_main_subnet" {
+	value = data.phpipam_subnet.aws_main_subnet.subnet_address
 }
 
-output "aws_master_subnet_mask" {
-	value = data.phpipam_subnet.aws_master_subnet.subnet_mask
+output "aws_main_subnet_mask" {
+	value = data.phpipam_subnet.aws_main_subnet.subnet_mask
 }
 
 output "aws_subnet" {

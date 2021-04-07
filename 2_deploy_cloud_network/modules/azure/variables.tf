@@ -4,8 +4,8 @@ variable "aws_vgw_ip" {}
 variable "peering_address" {}
 variable "subnet" {}
 variable "subnet_mask" {}
-variable "master_subnet" {}
-variable "master_subnet_mask" {}
+variable "main_subnet" {}
+variable "main_subnet_mask" {}
 variable "vyos_azure_peering_address" {}
 variable "vyos_azure_peering_subnet" {}
 variable "vyos_peering_address" {}
