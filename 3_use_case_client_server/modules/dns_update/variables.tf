@@ -1,0 +1,9 @@
+variable "dublin_ip" {}
+variable "kiel_ip" {}
+variable "frankfurt_ip" {}
+variable "frankfurt_www_internal_ip" {}
+variable "dublin_www_internal_ip" {}
+variable "dublin_client_ip" {}
+variable "frankfurt_client_ip" {}
+variable "azure_vyos_internal_ip" {}
+variable "aws_vyos_internal_ip" {}

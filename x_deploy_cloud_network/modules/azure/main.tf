@@ -36,9 +36,8 @@ resource "azurerm_public_ip" "azurerm_public_ip" {
         location = azurerm_resource_group.azurerm_resource_group.location
         resource_group_name = azurerm_resource_group.azurerm_resource_group.name
 	//design decision: Dynamic IP gets allocated by the moment a "machine" gets provisioned. Static is allocated with this ressource. If mode "Dynamic": get allocated IP with "data "azurerm_public_ip"". VPN Gateway is Dynamic only.
-	//allocation_method = "Dynamic"
-	allocation_method = "Static"
-	sku = "Standard"
+	allocation_method = "Dynamic"
+	sku = "Basic"
 }
 
 resource "azurerm_subnet" "gateway_subnet" {
@@ -46,7 +45,7 @@ resource "azurerm_subnet" "gateway_subnet" {
 	name = "GatewaySubnet"
         resource_group_name = azurerm_resource_group.azurerm_resource_group.name
 	virtual_network_name = azurerm_virtual_network.azurerm_virtual_network.name
-	address_prefixes = [ "10.32.66.0/27" ]
+	address_prefixes = [ "10.32.67.0/27" ]
 }
 
 resource "azurerm_virtual_network_gateway" "azurerm_virtual_network_gateway" {
@@ -59,7 +58,7 @@ resource "azurerm_virtual_network_gateway" "azurerm_virtual_network_gateway" {
 
 	active_active = false
 	enable_bgp = true
-	sku = "VpnGw1AZ"
+	sku = "VpnGw1"
 
 	ip_configuration {
 		name = "vnetGatewayConfig"
@@ -105,7 +104,7 @@ resource "azurerm_local_network_gateway" "to_vyos" {
 	name = "to_vyos"
         location = azurerm_resource_group.azurerm_resource_group.location
         resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-	gateway_address = "195.244.235.215"
+	gateway_address = "195.244.254.198"
 #	address_space = [ "${var.vyos_peering_address}/32" ]
 
 	bgp_settings {
