@@ -4,6 +4,7 @@ provider "dns" {
 		server        = "192.168.200.29"
 		key_name      = "fr-vpn.ba.mungard.de."
 		// $ tsig-keygen
+		// PSA: I am aware that TSIG keys lie in public git repo: you can try, but this nameserver is not productive anymore ;-)
 		key_algorithm = "hmac-sha256"
 		key_secret    = "qmifEVffPyN/BGaohFpyWPzBMIw5kBXKIfjYs3aIkRw="
 	}
